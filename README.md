@@ -36,4 +36,5 @@ This software is distributed under the MIT license.
 # Acknowledgments  
 Miguel Angel Luque-Fernandez is supported by a Miguel Servet I Investigator award (grant CP17/00206) and a project grant EU-FEDER-FIS PI-18/01593 from the Instituto de Salud Carlos III, Madrid, Spain.   
 
-![Figure Link](https://github.com/migariane/Spanish_LifeTablesByDeprivation/blob/master/Acknowledgment.png)   
+![Figure Link](https://github.com/migariane/Spanish_LifeTablesByDeprivation/blob/main/Acknowledgment.png)   
+https://github.com/migariane/Spanish_LifeTablesByDeprivation/blob/main/Acknowledgment.png
