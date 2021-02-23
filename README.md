@@ -3,7 +3,7 @@ An ordinary **life table** is a statistical tool that summarizes the mortality e
 
 Using Spanish population and mortality data by census tract level, age, calendar year, and sex from 2011-2013, and the quintiles (where Q5 represents the most deprived areas and Q1 the less deprived areas) of the Spanish Deprivation Index (SDI) from 2011 (an index created using data from the Spanish 2011 census conducted by the Spanish National Statistics Institute), we created the first abridged Spanish Life Tables by deprivation.   
 
-This repository provides the code to reproduce the creation of the first smoothed life tables containing age specific deprivation standardised mortality rates and life expectancy, by sex, age groups, deprivation quintile and census tract in Spain 2011-2013. "Smoothed life tables"" were created, using restricted cubic splines in an exponential flexible Poisson regression model [1,2].  
+This repository provides the code to reproduce the creation of the first smoothed life tables containing age specific deprivation standardised mortality rates and life expectancy, by sex, age groups, deprivation quintile and census tract in Spain 2011-2013. **"Smoothed life tables"** were created, using restricted cubic splines in an exponential flexible Poisson regression model [1,2].  
 
 1. Rachet, B., Maringe, C., Woods, L.M. et al. (2015) Multivariable flexible modelling for estimating complete, smoothed life tables for sub-national populations. BMC Public Health 15, 1240 (2015). https://doi.org/10.1186/s12889-015-2534-3  
 
