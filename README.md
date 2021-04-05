@@ -28,7 +28,7 @@ Twitter @WATZILEI
 You can cite this repository as:  
 Luque-Fernandez MA (2021). Spanish Abridged Life Tables by sex, age and deprivation, 2011-2013. GitHub repository, https://github.com/migariane/Spanish_LifeTablesByDeprivation         
 
-[![DOI]](https://zenodo.org/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4662660.svg)](https://doi.org/10.5281/zenodo.4662660)
 
 # Copyright
 This software is distributed under the MIT license.
