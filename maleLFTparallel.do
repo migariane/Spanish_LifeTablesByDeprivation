@@ -64,13 +64,13 @@ rename Age age
 gen Age = n 
 
 // Check consistency with published official data from office National Statistics for only one province 
-//gen prov = substr(sc,1,2)
-//keep if prov == "18" 
-// forval i = 12417(1)13071
-// forval i = 1(1)35960 
+// gen prov = substr(sc,1,2)
+// keep if prov == "18" 
+// forval i = 12679(1)13333
+// forval i = 1(1)43816
 
 sort cstr qsdi Age
-forval i = 1(1)35960   {
+  forval i = 1(1)43816{
   replace lx = 100000   if n == 1  & cstr==`i'
   replace dx = (qx * lx) if n == 1  & cstr==`i'
   display "Number of records updated: `i'"
@@ -78,7 +78,7 @@ forval i = 1(1)35960   {
 }
 
 sort cstr qsdi Age n
-forval i = 1(1)35960   {
+ forval i = 1(1)43816{
 		 replace lx = lx[_n-1] - dx[_n-1] if  Age== 2 & cstr==`i'
 		 replace dx = lx*qx if  Age==2 & cstr==`i'
 		 replace lx = lx[_n-1] - dx[_n-1] if  Age== 3 & cstr==`i'
@@ -118,7 +118,7 @@ forval i = 1(1)35960   {
 }
 
 sort cstr qsdi Age n
-forval i = 1(1)35960  {
+ forval i = 1(1)43816{
 	     replace Lx = 5 * (lx + lx[_n+1])/2  if  Age== 1 & cstr==`i'
 		 replace Lx = 5 * (lx + lx[_n+1])/2  if  Age== 2 & cstr==`i'
 		 replace Lx = 5 * (lx + lx[_n+1])/2  if  Age== 3 & cstr==`i'
@@ -142,7 +142,7 @@ forval i = 1(1)35960  {
 }
 
 sort cstr qsdi Age n
-forval i = 1(1)35960   {
+ forval i = 1(1)43816{
 	     gsort -Age
          replace Tx = sum(Lx) if cstr==`i'
 		 display "Number of records updated: `i'"
@@ -159,19 +159,6 @@ margins qsdi
 marginsplot
 
 save mablifetable, replace
-
-// Life Table to be shared
-//gen Age = age
-//lab def Age 2  "0-4" 7  "5-9" 12 "10-14" 17 "15-19" 22 "20-24" 27  "25-29" 32 "30-34" 37 "35-39" 42 "40-44" ///
-//47 "45-49" 52 "50-54" 57 "55-59" 62 "60-64" 67 "65-69" 72 "70-74" 77 "75-79" 82 "80-84" 87 "85+", replace
-//lab val Age Age
-//drop cmr death Pop cstr 
-//decode Age, gen(Agegroup)
-//rename sc Areacode
-//rename qsdi Deprivation
-//drop Age
-//order Areacode Deprivation Agegroup
-//sort Areacode n Deprivation
 
 export delimited using "/Users/MALF/Dropbox/EASP/FIS2018/Articles/3_THIRD_LIFETABLES/Analysis/mablifetable.csv", replace
 
