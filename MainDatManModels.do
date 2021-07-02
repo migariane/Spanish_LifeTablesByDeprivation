@@ -57,13 +57,27 @@ forvalues i = 1(1)3 {
 preserve
  keep if sex == "hombres"
  save male201`i', replace
- restore
+restore
  
 preserve
   keep if sex == "mujeres"
  save female201`i', replace
 restore
 } 
+
+//clear 
+//use male2013
+//tostring sc, gen(SC)
+//drop sc 
+//rename SC sc
+//save male2013, replace
+
+//clear
+//use female2013
+//tostring sc, gen(SC)
+//drop sc 
+//rename SC sc
+//save female2013, replace
 
 // Count census tracts (cs) 2011/13 in Population file
 clear
@@ -85,7 +99,6 @@ bys sc: gen N = _N
 gen countsc = 1 if n==N
 tab countsc, miss
 
-
 // Count cs 2011/13 males after linkage with mortality, population and 2011 census data
 clear 
 forvalues i = 1(1)3 {
@@ -100,6 +113,8 @@ bysort sc: gen n = _n
 bysort sc: gen N = _N
 gen countsc = 1 if n==N
 bys year: tab countsc, miss
+describe
+tabstat def pop if year==201`i', by(age) stat(sum)
 restore
 }
 
@@ -139,7 +154,7 @@ use male2011
 forvalues i = 2(1)3 {
      append using male201`i'
   }
-xtile qsdi = SDI, nq(5)  
+xtile qsdi = SDI, nq(5) // ref three year period 
 keep sc age def pop qsdi year
 collapse (sum) def (mean) pop , by(sc age qsdi)
 gen Pop = round(pop)
@@ -153,7 +168,7 @@ use female2011
 forvalues i = 2(1)3 {
      append using female201`i'
   }
-xtile qsdi = SDI, nq(5)  
+xtile qsdi = SDI, nq(5) // ref three year period  
 keep sc age def pop qsdi year
 collapse (sum) def (mean) pop, by(sc age qsdi)
 gen   Pop = round(pop)
@@ -179,9 +194,6 @@ list if Pop  == 0  & def>=1 // Check (Deaths outside the country)
 drop if Pop  == 0  & def>=1
 drop if Pop == 0
 drop if qsdi == . // Drop non-linked census tracts 
-collapse (sum) def (mean) Pop, by(sc Age age qsdi ct)
-
-tab Age
 
 // Checking consistency
 // sort qsdi sc age
@@ -231,22 +243,23 @@ collapse (mean) obsMR (mean) predMR, by(Age qsdi)
 // Replace obsR = exp(obsR) 
 gen lnobsMR = ln(obsMR)
 tw(line lnobsMR Age if qsdi==1)(line lnobsMR Age if qsdi==2)(line lnobsMR Age if qsdi==3) /// 
-(line lnobsMR Age if qsdi==4)(line lnobsMR Age if qsdi==5), saving(observed)
+(line lnobsMR Age if qsdi==4)(line lnobsMR Age if qsdi==5), saving(maleobsMR)
 
 // Visual check goodness of fit
 gen a = ln(obsMR)
 gen b = ln(predMR)
-tw(scatter a Age if qsdi==1)(line b Age if qsdi==1), saving(a)
-tw(scatter a Age if qsdi==2)(line b Age if qsdi==2), saving(b)
-tw(scatter a Age if qsdi==3)(line b Age if qsdi==3), saving(c)
+tw(scatter a Age if qsdi==1)(line b Age if qsdi==1), saving(a) 
+tw(scatter a Age if qsdi==2)(line b Age if qsdi==2), saving(b) 
+tw(scatter a Age if qsdi==3)(line b Age if qsdi==3), saving(c) 
 tw(scatter a Age if qsdi==4)(line b Age if qsdi==4), saving(d)
-tw(scatter a Age if qsdi==5)(line b Age if qsdi==5), saving(e)
-graph combine  a.gph b.gph c.gph d.gph e.gph, saving(combined)
+tw(scatter a Age if qsdi==5)(line b Age if qsdi==5), saving(e) 
+graph combine  a.gph b.gph c.gph d.gph e.gph, saving(MobsPredPanel)
 restore
 
 ////////////////////////
 // Modeling FEMALES
 ////////////////////////
+clear
 use female1113
 destring sc, gen(ct)
 format %10.0f ct
@@ -262,7 +275,6 @@ replace cstr = sum(cstr)
 replace cstr = . if missing(cstr)
 
 duplicates report cs cstr
-
 
 list if Pop  == 0  & def>=1 // Check (Deaths outside the country)
 drop if Pop  == 0 // Drop non-linked census tracts 
@@ -289,7 +301,7 @@ rcsgen Age, knots(2 12 22 32 42 52 67 82) gen(rcsa) center(60) ortho
 //glm def rcsa* i.qsdi c.rcsa*#i.qsdi, exposure(Pop) eform  
 
 // Improved model accouting for random intercept from census tracts (decreasing overdispersion)
-//crossfold xtpoisson def rcsa* i.qsdi c.rcsa*#i.qsdi, exposure(Pop) i(ct) irr normal mae 
+// crossfold xtpoisson def rcsa* i.qsdi c.rcsa*#i.qsdi, exposure(Pop) i(ct) irr normal mae 
 xtpoisson def rcsa* i.qsdi c.rcsa*#i.qsdi, exposure(Pop) i(ct) irr normal
 
 // Predict pdef, iru0  // Rates assuming random intercep = zero
@@ -305,7 +317,7 @@ collapse (mean) obsMR (mean) predMR, by(Age qsdi)
 // Replace obsR = exp(obsR) 
 gen lnobsMR = ln(obsMR)
 tw(line lnobsMR Age if qsdi==1)(line lnobsMR Age if qsdi==2)(line lnobsMR Age if qsdi==3) /// 
-(line lnobsMR Age if qsdi==4)(line lnobsMR Age if qsdi==5), saving(fobserved)
+(line lnobsMR Age if qsdi==4)(line lnobsMR Age if qsdi==5), saving(FemaleobsMR)
 
 // Visual check goodness of fit
 gen a = ln(obsMR)
@@ -315,20 +327,7 @@ tw(scatter a Age if qsdi==2)(line b Age if qsdi==2), saving(fb)
 tw(scatter a Age if qsdi==3)(line b Age if qsdi==3), saving(fc)
 tw(scatter a Age if qsdi==4)(line b Age if qsdi==4), saving(fd)
 tw(scatter a Age if qsdi==5)(line b Age if qsdi==5), saving(fe)
-graph combine  fa.gph fb.gph fc.gph fd.gph fe.gph, saving(fcombined)
+graph combine  fa.gph fb.gph fc.gph fd.gph fe.gph, saving(FobsPredPanel)
 restore
-
-//////////////////////////////////////////////////
-// Abridged smoothed life Tables by deprivation
-//////////////////////////////////////////////////
-
-* Use parallel package to speed the estimation
-clear
-parallel setclusters 4
-parallel do maleLFTparallel.do
-
-clear
-parallel setclusters 4
-parallel do femaleLFTparallel.do
 
 

@@ -31,7 +31,6 @@ THE SOFTWARE.
 // Male Life Table 
 clear
 use mablifetable
-
 tostring age, gen(Agegroup)
 replace Agegroup = "0-4" if Age == "2"
 replace Agegroup = "05-09''" if Age == "7" 
