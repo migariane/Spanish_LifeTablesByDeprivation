@@ -14,6 +14,9 @@ This repository provides the code to reproduce the creation of the first smoothe
 Miguel Angel Luque-Fernandez, LSHTM, NCDE, ICON Group, London, UK    
 Email: miguel-angel.luque@lshtm.ac.uk 
 
+Daniel Redondo-Sánchez, ibs.GRANADA, CIBERESP, EASP.  
+Email: daniel.redondo.easp@juntadeandalucia.es
+
 # Contributors  
 
  
@@ -37,4 +40,3 @@ This software is distributed under the MIT license.
 Miguel Angel Luque-Fernandez is supported by a Miguel Servet I Investigator award (Grant CP17/00206) and a project grant EU-FEDER-FIS PI-18/01593 from the Instituto de Salud Carlos III, Madrid, Spain.   
 
 ![Figure Link](https://github.com/migariane/Spanish_LifeTablesByDeprivation/blob/main/Acknowledgment.png)   
-https://github.com/migariane/Spanish_LifeTablesByDeprivation/blob/main/Acknowledgment.png
