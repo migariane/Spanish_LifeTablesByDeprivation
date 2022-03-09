@@ -1,4 +1,5 @@
-# Spanish Abridged Life Tables by sex, age, and socioeconomic status, 2011-2013  
+# Spanish Life Tables by sex, age, and socioeconomic status, 2011-2013  
+
 An ordinary **life table** is a statistical tool that summarizes the mortality experience of a population and yields information about longevity and life expectation. Life tables in *population-based cancer epidemiology* are an important tool used to compute the net survival or probability of dying due to cancer in a given population. Complete life tables are published by sex and age at a national level on a regular basis. Furthermore, because background mortality can vary widely by socioeconomic status, it is desirable to be able to produce life tables specific to these populations in order to better understand how mortality varies within them. To be able to produce net survival estimates by socioeconomic status life tables by sex, age and socioeconomic status are needed.  
 
 Using Spanish population and mortality data by census tract level, age, calendar year, and the quintiles (where Q5 represents the most deprived areas and Q1 the less deprived areas) of the Spanish Deprivation Index (SDI) (an index created using data from the Spanish 2011 census conducted by the Spanish National Statistics Institute), we created the first abridged Spanish Life Tables by deprivation for the period 2011-2013.   
@@ -17,9 +18,6 @@ Email: miguel-angel.luque@lshtm.ac.uk
 Daniel Redondo-Sánchez, ibs.GRANADA, CIBERESP, EASP.  
 Email: daniel.redondo.easp@juntadeandalucia.es
 
-# Contributors  
-
- 
 # Updates
 In case you have updates or changes that you would like to make, please send me a pull request.  
 Alternatively, if you have any questions, please e-mail me:   
@@ -29,7 +27,7 @@ Twitter @WATZILEI
 
 # Citation    
 You can cite this repository as:  
-Luque-Fernandez MA (2021). Spanish Abridged Life Tables by sex, age and deprivation, 2011-2013. GitHub repository, https://github.com/migariane/Spanish_LifeTablesByDeprivation         
+Luque-Fernandez MA (2022). Spanish Abridged Life Tables by sex, age and deprivation, 2011-2013. GitHub repository, https://github.com/migariane/Spanish_LifeTablesByDeprivation         
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4662660.svg)](https://doi.org/10.5281/zenodo.4662660)
 
