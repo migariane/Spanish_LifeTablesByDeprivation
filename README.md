@@ -6,15 +6,16 @@ Using Spanish population and mortality data by census tract level, age, calendar
 
 This repository provides the code to reproduce the creation of the first smoothed life tables containing age specific deprivation standardised mortality rates and life expectancy, by sex, age groups, deprivation quintile and census tract in Spain 2011-2013. **"Smoothed life tables"** were created, using restricted cubic splines in an exponential flexible mixed effects Poisson regression model [1,2].  The variables contained in each csv are:
 
-1.qsdi (deprivation quintile)
-2.age (age in categories)
-3.prov (Spanish province)
-4.Mortality_Rate (Mortality rate)
-5.lci (lower 95%CI)
-6.uci (upper 95%CI)
-7.Ex (Life expectancy in years)
-8.wEx (Weighted life expectancy according to population size by province)
+* qsdi (deprivation quintile)
+* age (age in categories)
+* prov (Spanish province)
+* Mortality_Rate (Mortality rate)
+* lci (lower 95%CI)
+* uci (upper 95%CI)
+* Ex (Life expectancy in years)
+* wEx (Weighted life expectancy according to population size by province)
 
+### References
 1. Rachet, B., Maringe, C., Woods, L.M. et al. (2015) Multivariable flexible modelling for estimating complete, smoothed life tables for sub-national populations. BMC Public Health 15, 1240 (2015). https://doi.org/10.1186/s12889-015-2534-3  
 
 2. Luque-Fernandez, MA., Belot, A., Quaresma, M., Maringe, C., Coleman, M. P., & Rachet, B. (2016). Adjusting for overdispersion in piecewise exponential regression models to estimate excess mortality rate in population-based research. BMC medical research methodology, 16(1), 129. https://doi.org/10.1186/s12874-016-0234-z
